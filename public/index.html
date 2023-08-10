@@ -9,33 +9,11 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <title>Mini chat</title>
+    <title>Band Names</title>
   </head>
   <body class="container">
-    <h1 class="mt-5">Mini chat</h1>
+    <h1 class="mt-5">Band Names</h1>
     <hr />
-
-    <form id="mi-formulario">
-      <div class="row">
-        <div class="col-8">
-          <input
-            type="text"
-            id="txt-mensaje"
-            placeholder="Mensaje"
-            class="form-control"
-          />
-        </div>
-        <div class="col-4">
-          <button class="btn btn-primary">Enviar</button>
-        </div>
-      </div>
-    </form>
-
-    <div class="row">
-      <div class="col">
-        <ul id="mis-mensajes" class="mt-2"></ul>
-      </div>
-    </div>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"
@@ -46,18 +24,11 @@
 
     <script>
       const socket = io("http://localhost:8081");
-      const form = document.getElementById("mi-formulario");
-      const mensajes = document.getElementById("mis-mensajes");
-      const txtMensaje = document.getElementById("txt-mensaje");
 
-      form.addEventListener("submit", (ev) => {
-        ev.preventDefault();
-        const nuevoMensaje = txtMensaje.value;
-        socket.emit("mensaje-to-server", { texto: nuevoMensaje });
-      });
+      // socket.emit("mensaje-to-server", { texto: nuevoMensaje });
 
-      socket.on("mensaje-from-server", (data) => {
-        mensajes.innerHTML += `<li>${data.texto}</li>`;
+      socket.on("current-bands", (data) => {
+        console.log(data);
       });
     </script>
   </body>
